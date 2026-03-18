@@ -51,7 +51,7 @@ const Hero = () => {
             </div>
 
             <div className="mt-6 text-xs text-white/60 sm:text-sm">
-              <span className="text-white/80 font-semibold">Fee</span>: {EVENT.registrationFee}
+
               <span className="mx-3 text-white/20">|</span>
               <span className="text-white/80 font-semibold">Venue</span>: {EVENT.location}
             </div>
