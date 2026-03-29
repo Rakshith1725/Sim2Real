@@ -37,8 +37,13 @@ export default function Queries() {
         />
 
         <div className="mt-14 grid gap-6">
-          <div>
-            <div className="glass-strong neon-border p-7">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 30 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ type: "spring", stiffness: 80, damping: 12 }}
+          >
+            <div className="glass-strong neon-border p-7 transition-colors hover:shadow-glowCyan/30">
               <form
                 onSubmit={(e) => {
                   e.preventDefault()
@@ -114,7 +119,7 @@ export default function Queries() {
                 </div>
               </form>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

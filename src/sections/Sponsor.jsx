@@ -12,8 +12,8 @@ const container = {
 }
 
 const item = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0 }
+  hidden: { opacity: 0, y: 60, scale: 0.9 },
+  show: { opacity: 1, y: 0, scale: 1, transition: { type: "spring", stiffness: 80, damping: 12 } }
 }
 
 export default function Sponsor() {
@@ -112,7 +112,12 @@ export default function Sponsor() {
           className="grid gap-6 md:grid-cols-3"
         >
           {WhySponsor.map((f, i) => (
-            <motion.div key={i} variants={item} className="glass neon-border p-8 hover:shadow-glowCyan transition-all duration-300">
+            <motion.div 
+              key={i} 
+              variants={item} 
+              whileHover={{ scale: 1.05, y: -8, transition: { duration: 0.2, ease: "easeOut" } }}
+              className="glass neon-border p-8 hover:shadow-glowCyan transition-colors duration-300"
+            >
               <f.icon className={`h-8 w-8 ${f.color} mb-6`} />
               <h3 className="text-xl font-bold mb-3">{f.title}</h3>
               <p className="text-white/60 text-sm leading-relaxed">{f.desc}</p>
@@ -124,9 +129,20 @@ export default function Sponsor() {
       {/* Packages Section */}
       <section id="packages" className="container-max scroll-mt-28">
         <h2 className="text-2xl font-black mb-10 tracking-tight">Sponsorship Packages</h2>
-        <div className="grid gap-8 md:grid-cols-3">
+        <motion.div 
+          className="grid gap-8 md:grid-cols-3"
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+        >
           {Packages.map((pkg, i) => (
-            <div key={i} className={`glass relative overflow-hidden flex flex-col p-8 border ${pkg.color} ${pkg.featured ? 'bg-white/[0.06] scale-105 z-10' : ''}`}>
+            <motion.div 
+              key={i} 
+              variants={item}
+              whileHover={{ scale: pkg.featured ? 1.08 : 1.05, y: -8, transition: { duration: 0.2, ease: "easeOut" } }}
+              className={`glass relative overflow-hidden flex flex-col p-8 border transition-colors ${pkg.color} ${pkg.featured ? 'bg-white/[0.06] scale-105 z-10 hover:shadow-glowCyan' : 'hover:shadow-glowCyan/50'}`}
+            >
               {pkg.featured && (
                 <div className="absolute top-0 right-0 bg-neon-cyan px-4 py-1 text-[10px] font-black uppercase text-black tracking-widest">
                   Most Popular
@@ -152,9 +168,9 @@ export default function Sponsor() {
               >
                 Become a {pkg.name} Sponsor
               </motion.a>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
 
       {/* Testimonial Section */}
@@ -195,18 +211,34 @@ export default function Sponsor() {
           <p className="text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed">
             Contact us to discuss sponsorship opportunities or to create a custom package that aligns with your company's goals.
           </p>
-          <div className="grid gap-6 md:grid-cols-2 max-w-lg mx-auto">
-            <a href={mailTo} className="flex flex-col items-center p-6 glass hover:shadow-glowCyan transition-all border border-white/5 group">
+          <motion.div 
+            className="grid gap-6 md:grid-cols-2 max-w-lg mx-auto"
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-80px" }}
+          >
+            <motion.a 
+              href={mailTo} 
+              variants={item}
+              whileHover={{ scale: 1.05, y: -5, transition: { duration: 0.2, ease: "easeOut" } }}
+              className="flex flex-col items-center p-6 glass transition-colors border border-white/5 group hover:shadow-glowCyan"
+            >
               <Mail className="h-8 w-8 text-neon-cyan mb-4 group-hover:scale-110 transition-transform" />
               <div className="text-sm font-bold mb-1">Email Us</div>
               <div className="text-xs text-white/50">{EVENT.email}</div>
-            </a>
-            <a href="tel:+918123985320" className="flex flex-col items-center p-6 glass hover:shadow-glowViolet transition-all border border-white/5 group">
+            </motion.a>
+            <motion.a 
+              href="tel:+918123985320" 
+              variants={item}
+              whileHover={{ scale: 1.05, y: -5, transition: { duration: 0.2, ease: "easeOut" } }}
+              className="flex flex-col items-center p-6 glass transition-colors border border-white/5 group hover:shadow-glowViolet"
+            >
               <Phone className="h-8 w-8 text-neon-violet mb-4 group-hover:scale-110 transition-transform" />
               <div className="text-sm font-bold mb-1">Call Us</div>
               <div className="text-xs text-white/50">+91 8123985320</div>
-            </a>
-          </div>
+            </motion.a>
+          </motion.div>
         </div>
       </section>
     </div>

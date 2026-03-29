@@ -13,10 +13,12 @@ export default function Brochure() {
         />
 
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 60, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ type: "spring", stiffness: 80, damping: 12 }}
           viewport={{ once: true, margin: "-80px" }}
-          className="mt-14 glass-strong neon-border overflow-hidden"
+          whileHover={{ scale: 1.02, transition: { duration: 0.2, ease: "easeOut" } }}
+          className="mt-14 glass-strong neon-border overflow-hidden transition-colors hover:shadow-glowPink/30"
         >
           <div className="relative grid gap-6 p-7 md:grid-cols-12 md:items-center">
             <div className="md:col-span-8 text-center md:text-left">

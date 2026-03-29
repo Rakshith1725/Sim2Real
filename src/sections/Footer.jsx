@@ -1,3 +1,4 @@
+import { motion } from "framer-motion"
 import { MapPin, Mail } from "lucide-react"
 import { EVENT } from "../content/event"
 import Logo from "../components/Logo"
@@ -18,8 +19,9 @@ export default function Footer() {
 
           <div className="md:col-span-7 md:justify-self-end">
             <div className="grid gap-4 sm:grid-cols-2">
-              <a
-                className="glass neon-border flex items-start gap-3 p-4 transition hover:shadow-glowCyan"
+              <motion.a
+                whileHover={{ scale: 1.05, y: -4, transition: { duration: 0.2, ease: "easeOut" } }}
+                className="glass neon-border flex items-start gap-3 p-4 transition-colors hover:shadow-glowCyan"
                 href={`mailto:${EVENT.email}`}
               >
                 <Mail className="mt-0.5 h-5 w-5 text-neon-cyan" />
@@ -27,14 +29,17 @@ export default function Footer() {
                   <div className="text-sm font-semibold">Email</div>
                   <div className="mt-1 text-sm text-white/65">{EVENT.email}</div>
                 </div>
-              </a>
-              <div className="glass neon-border flex items-start gap-3 p-4">
+              </motion.a>
+              <motion.div 
+                whileHover={{ scale: 1.05, y: -4, transition: { duration: 0.2, ease: "easeOut" } }}
+                className="glass neon-border flex items-start gap-3 p-4 transition-colors hover:shadow-glowViolet"
+              >
                 <MapPin className="mt-0.5 h-5 w-5 text-neon-violet" />
                 <div>
                   <div className="text-sm font-semibold">Location</div>
                   <div className="mt-1 text-sm text-white/65">{EVENT.location}</div>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>

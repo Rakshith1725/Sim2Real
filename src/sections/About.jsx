@@ -10,8 +10,8 @@ const container = {
 }
 
 const item = {
-  hidden: { opacity: 0, y: 50 },
-  show: { opacity: 1, y: 0 },
+  hidden: { opacity: 0, y: 60, scale: 0.9 },
+  show: { opacity: 1, y: 0, scale: 1, transition: { type: "spring", stiffness: 80, damping: 12 } },
 }
 
 const About = () => {
@@ -60,7 +60,8 @@ const About = () => {
             <motion.div
               key={title}
               variants={item}
-              className={"glass neon-border group relative overflow-hidden p-6 transition will-change-transform hover:-translate-y-2 " + glow}
+              whileHover={{ scale: 1.05, y: -8, transition: { duration: 0.2, ease: "easeOut" } }}
+              className={"glass neon-border group relative overflow-hidden p-6 transition-colors " + glow}
             >
               <div className="absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100">
                 <div className="absolute -inset-20 bg-[radial-gradient(circle_at_20%_10%,rgba(34,211,238,0.18),transparent_55%)]" />

@@ -6,7 +6,10 @@ import { EVENT } from "../content/event"
 
 function QA({ q, a, isOpen, onToggle }) {
   return (
-    <div className="glass neon-border overflow-hidden">
+    <motion.div 
+      whileHover={{ scale: 1.02, x: 4, transition: { duration: 0.2, ease: "easeOut" } }}
+      className="glass neon-border overflow-hidden transition-colors hover:shadow-glowCyan/50"
+    >
       <button
         type="button"
         onClick={onToggle}
@@ -33,7 +36,7 @@ function QA({ q, a, isOpen, onToggle }) {
           </motion.div>
         ) : null}
       </AnimatePresence>
-    </div>
+    </motion.div>
   )
 }
 

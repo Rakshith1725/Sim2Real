@@ -17,11 +17,12 @@ export default function Testimonials() {
           {EVENT.testimonials.map((t, idx) => (
             <motion.figure
               key={t.author}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 60, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-80px" }}
-              transition={{ delay: Math.min(0.1 * idx, 0.2) }}
-              className="glass-strong neon-border relative overflow-hidden p-7"
+              transition={{ delay: Math.min(0.1 * idx, 0.2), type: "spring", stiffness: 80, damping: 12 }}
+              whileHover={{ scale: 1.05, y: -8, transition: { duration: 0.2, ease: "easeOut" } }}
+              className="glass-strong neon-border relative overflow-hidden p-7 transition-colors hover:shadow-glowViolet"
             >
               <div className="absolute inset-0 opacity-70">
                 <div className="absolute -inset-20 bg-[radial-gradient(circle_at_20%_10%,rgba(167,139,250,0.18),transparent_55%)]" />

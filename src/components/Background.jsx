@@ -12,11 +12,11 @@ const Background = () => {
           glowIntensity={0.3}
           saturation={0}
           mouseRepulsion
-          repulsionStrength={0}
           twinkleIntensity={0.5}
           rotationSpeed={0.35}
           transparent
-          mouseInteraction={false}
+          mouseInteraction={true}
+          repulsionStrength={0.15}
         />
       </div>
 

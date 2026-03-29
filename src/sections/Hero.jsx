@@ -60,7 +60,13 @@ const Hero = () => {
           <div className="lg:col-span-5">
             <Countdown targetISO={EVENT.registrationDeadlineISO} />
 
-            <div className="mt-5 glass neon-border overflow-hidden p-5">
+            <motion.div 
+              initial={{ opacity: 0, y: 30, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ delay: 0.2, type: "spring", stiffness: 80, damping: 12 }}
+              whileHover={{ scale: 1.02, transition: { duration: 0.2, ease: "easeOut" } }}
+              className="mt-5 glass neon-border overflow-hidden p-5 transition-colors hover:shadow-glowCyan/30"
+            >
               <div className="text-xs font-semibold tracking-[0.25em] text-white/60 uppercase">
                 Live signal
               </div>
@@ -76,13 +82,17 @@ const Hero = () => {
               <div className="mt-4 h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
               <div className="mt-4 grid grid-cols-3 gap-3 text-center">
                 {["Simulate", "Deploy", "Win"].map((t) => (
-                  <div key={t} className="glass px-3 py-3">
+                  <motion.div 
+                    key={t} 
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    className="glass px-3 py-3 transition-colors hover:bg-white/[0.08]"
+                  >
                     <div className="text-sm font-bold">{t}</div>
                     <div className="mt-1 text-[11px] text-white/60">Phase</div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

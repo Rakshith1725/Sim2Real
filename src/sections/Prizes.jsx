@@ -32,11 +32,12 @@ export default function Prizes() {
             return (
               <motion.div
                 key={p.place}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 60, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, margin: "-80px" }}
-                transition={{ delay: Math.min(0.1 * idx, 0.3) }}
-                className="glass-strong neon-border group relative overflow-hidden p-7"
+                transition={{ delay: Math.min(0.1 * idx, 0.3), type: "spring", stiffness: 80, damping: 12 }}
+                whileHover={{ scale: 1.05, y: -8, transition: { duration: 0.2, ease: "easeOut" } }}
+                className="glass-strong neon-border group relative overflow-hidden p-7 transition-colors"
               >
                 <div className="absolute inset-0 opacity-70">
                   <div className={"absolute inset-0 bg-gradient-to-br " + accent + " opacity-[0.10]"} />

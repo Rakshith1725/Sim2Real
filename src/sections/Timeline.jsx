@@ -50,14 +50,17 @@ const Timeline = () => {
                 {EVENT.schedule.map((s, idx) => (
                   <motion.div
                     key={s.title}
-                    initial={{ opacity: 0, y: 24 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, x: -40, scale: 0.95 }}
+                    whileInView={{ opacity: 1, x: 0, scale: 1 }}
                     viewport={{ once: true, margin: "-80px" }}
-                    transition={{ delay: Math.min(0.1 * idx, 0.5) }}
+                    transition={{ delay: Math.min(0.1 * idx, 0.5), type: "spring", stiffness: 80, damping: 12 }}
                     className="relative pl-10 lg:pl-12"
                   >
                     <div className="absolute left-3 top-6 h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-neon-cyan shadow-glowCyan lg:left-4" />
-                    <div className="glass neon-border group overflow-hidden p-5 transition hover:-translate-y-1 hover:shadow-glowViolet">
+                    <motion.div 
+                      whileHover={{ scale: 1.03, x: 8, transition: { duration: 0.2, ease: "easeOut" } }}
+                      className="glass neon-border group overflow-hidden p-5 transition-colors hover:shadow-glowViolet"
+                    >
                       <div className="flex flex-wrap items-center justify-between gap-3">
                         <div>
                           <div className="text-lg font-bold">{s.title}</div>
@@ -75,7 +78,7 @@ const Timeline = () => {
                         <ChevronRight className="h-3.5 w-3.5 text-neon-violet" />
                         System ready
                       </div>
-                    </div>
+                    </motion.div>
                   </motion.div>
                 ))}
               </div>

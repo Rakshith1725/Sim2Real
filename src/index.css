@@ -23,6 +23,20 @@ html {
     background: rgba(34, 211, 238, 0.25);
   }
 
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #050610;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(34, 211, 238, 0.5);
+  }
+
   a {
     @apply outline-none focus-visible:ring-2 focus-visible:ring-neon-cyan/60 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950;
   }
@@ -34,40 +48,65 @@ html {
   }
 
   .glass {
-    @apply rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl;
+    @apply rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl transition-all duration-300;
+  }
+  .glass:hover {
+    @apply bg-white/[0.07] border-white/20;
   }
 
   .glass-strong {
-    @apply rounded-2xl border border-white/15 bg-white/[0.06] backdrop-blur-2xl;
+    @apply rounded-2xl border border-white/15 bg-white/[0.06] backdrop-blur-2xl transition-all duration-300;
+  }
+  .glass-strong:hover {
+    @apply bg-white/[0.1] border-white/30;
   }
 
   .neon-border {
+    position: relative;
     box-shadow:
       0 0 0 1px rgba(255, 255, 255, 0.08) inset,
       0 0 0 1px rgba(34, 211, 238, 0.18);
+    transition: box-shadow 0.3s ease;
+  }
+  .neon-border:hover {
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.12) inset,
+      0 0 0 1px rgba(34, 211, 238, 0.4),
+      0 10px 40px rgba(34, 211, 238, 0.2);
   }
 
   .text-glow {
     text-shadow:
-      0 0 18px rgba(34, 211, 238, 0.22),
-      0 0 48px rgba(167, 139, 250, 0.16);
+      0 0 18px rgba(34, 211, 238, 0.4),
+      0 0 48px rgba(167, 139, 250, 0.3);
+  }
+
+  .text-shimmer {
+    background: linear-gradient(90deg, #22d3ee, #a78bfa, #fb7185, #22d3ee);
+    background-size: 300% 300%;
+    animation: shimmer 4s infinite linear;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition overflow-hidden relative;
     @apply focus-visible:ring-2 focus-visible:ring-neon-cyan/60 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950;
   }
   .btn-primary {
-    @apply btn text-black;
-    background: linear-gradient(90deg, #22d3ee, #a78bfa, #fb7185);
-    background-size: 200% 200%;
+    @apply btn text-black font-bold;
+    background: linear-gradient(90deg, #22d3ee, #a78bfa, #fb7185, #22d3ee);
+    background-size: 300% 300%;
+    animation: shimmer 4s infinite linear;
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.3);
   }
   .btn-primary:hover {
-    @apply shadow-glowViolet;
-    @apply animate-shimmer;
+    @apply shadow-glowViolet scale-105;
+    box-shadow: 0 0 30px rgba(167, 139, 250, 0.6);
   }
   .btn-ghost {
-    @apply btn text-white/90 border border-white/15 bg-white/[0.02] hover:bg-white/[0.06];
+    @apply btn text-white/90 border border-white/15 bg-white/[0.02] hover:bg-white/[0.1] hover:border-white/30 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)];
   }
 }
 
