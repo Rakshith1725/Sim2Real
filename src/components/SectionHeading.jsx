@@ -1,4 +1,5 @@
 import { motion } from "framer-motion"
+import AnimatedText from "./AnimatedText"
 
 export default function SectionHeading({ eyebrow, title, description, align = "center" }) {
   const isCenter = align === "center"
@@ -19,17 +20,22 @@ export default function SectionHeading({ eyebrow, title, description, align = "c
         </motion.div>
       ) : null}
 
-      <motion.h2
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
+      <AnimatedText 
+        text={title} 
         className={
-          "mt-5 text-2xl font-bold tracking-tight sm:text-3xl md:text-5xl " +
-          (isCenter ? "" : "max-w-3xl")
-        }
-      >
-        <span className="text-glow">{title}</span>
-      </motion.h2>
+          "mt-5 text-3xl font-black tracking-tight sm:text-4xl md:text-6xl text-glow bg-gradient-to-r from-white via-white/80 to-white/40 bg-clip-text text-transparent " +
+          (isCenter ? "justify-center" : "max-w-3xl")
+        } 
+      />
+
+      {/* Premium 3D Animated Divider */}
+      <div className={`mt-6 flex h-px w-full max-w-md items-center bg-gradient-to-r from-transparent via-white/20 to-transparent ${isCenter ? "mx-auto" : ""}`}>
+        <motion.div 
+          animate={{ x: ["-100%", "100%"] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+          className="h-[2px] w-24 bg-gradient-to-r from-transparent via-neon-cyan to-transparent shadow-[0_0_15px_#22d3ee]"
+        />
+      </div>
 
       {description ? (
         <motion.p

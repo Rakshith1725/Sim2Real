@@ -1,6 +1,8 @@
 import { motion } from "framer-motion"
 import { Atom, Cpu, Bot, Trophy } from "lucide-react"
 import SectionHeading from "../components/SectionHeading"
+import TiltCard from "../components/TiltCard"
+import RobotAnimation from "../components/RobotAnimation"
 
 const container = {
   hidden: {},
@@ -18,11 +20,20 @@ const About = () => {
   return (
     <section id="about" className="relative py-24 border-t border-white/10">
       <div className="container-max">
-        <SectionHeading
-          eyebrow="About"
-          title="A competition built for real robots."
-          description="Sim2Real is a robotics challenge that starts in simulation and ends in the real world. The goal is to bridge strong algorithms with practical deployment — with mentorship and a showcase finale."
-        />
+        <div className="grid gap-12 lg:grid-cols-2 items-center">
+          <div>
+            <SectionHeading
+              eyebrow="About"
+              title="A competition built for real robots."
+              description="Sim2Real is a robotics challenge that starts in simulation and ends in the real world. The goal is to bridge strong algorithms with practical deployment — with mentorship and a showcase finale."
+            />
+          </div>
+          <div className="mt-12 flex justify-center">
+          <RobotAnimation 
+             className="max-w-[400px] opacity-100"
+          />
+        </div>
+        </div>
 
         <motion.div
           variants={container}
@@ -60,18 +71,21 @@ const About = () => {
             <motion.div
               key={title}
               variants={item}
-              whileHover={{ scale: 1.05, y: -8, transition: { duration: 0.2, ease: "easeOut" } }}
-              className={"glass neon-border group relative overflow-hidden p-6 transition-colors " + glow}
+              className="w-full h-full"
             >
-              <div className="absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100">
-                <div className="absolute -inset-20 bg-[radial-gradient(circle_at_20%_10%,rgba(34,211,238,0.18),transparent_55%)]" />
-                <div className="absolute -inset-20 bg-[radial-gradient(circle_at_80%_70%,rgba(251,113,133,0.12),transparent_55%)]" />
-              </div>
-              <div className="relative">
-                <Icon className="h-6 w-6 text-neon-cyan" />
-                <h3 className="mt-4 text-lg font-bold">{title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/70">{desc}</p>
-              </div>
+              <TiltCard>
+                <div className={"w-full h-full glass neon-border group relative overflow-hidden p-6 transition-colors " + glow}>
+                  <div className="absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100 pointer-events-none">
+                    <div className="absolute -inset-20 bg-[radial-gradient(circle_at_20%_10%,rgba(34,211,238,0.18),transparent_55%)]" />
+                    <div className="absolute -inset-20 bg-[radial-gradient(circle_at_80%_70%,rgba(251,113,133,0.12),transparent_55%)]" />
+                  </div>
+                  <div className="relative pointer-events-none">
+                    <Icon className="h-6 w-6 text-neon-cyan" />
+                    <h3 className="mt-4 text-lg font-bold">{title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-white/70">{desc}</p>
+                  </div>
+                </div>
+              </TiltCard>
             </motion.div>
           ))}
         </motion.div>

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion"
 import { Crown, Medal, Trophy } from "lucide-react"
 import SectionHeading from "../components/SectionHeading"
+import RobotAnimation from "../components/RobotAnimation"
 import { EVENT } from "../content/event"
 
 const icons = {
@@ -18,6 +19,8 @@ export default function Prizes() {
           title="Exciting prizes await."
           description="Stay tuned for detailed prize values and additional categories."
         />
+
+
 
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {EVENT.prizes.map((p, idx) => {

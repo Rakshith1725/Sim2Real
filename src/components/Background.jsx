@@ -1,8 +1,10 @@
 import Galaxy from "./Galaxy/Galaxy"
+import TechElements from "./TechElements"
 
 const Background = () => {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden bg-ink-950">
+      <TechElements />
       <div className="absolute inset-0">
         <Galaxy
           starSpeed={1.2}

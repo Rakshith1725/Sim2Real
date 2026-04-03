@@ -1,6 +1,7 @@
 import { Cpu, Bot, Brain, Trophy } from "lucide-react"
 import { motion } from "framer-motion"
 import SectionHeading from "../components/SectionHeading"
+import TiltCard from "../components/TiltCard"
 
 const data = [
   { title: "AI / ML", icon: Brain, desc: "Perception, planning, and learning-driven control." },
@@ -42,19 +43,22 @@ const Events = () => {
               <motion.div
                 key={e.title}
                 variants={item}
-                whileHover={{ scale: 1.05, y: -8, transition: { duration: 0.2, ease: "easeOut" } }}
-                className="glass neon-border group relative overflow-hidden p-6 transition-colors hover:shadow-glowCyan"
+                className="w-full h-full"
               >
-                <div className="absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100">
-                  <div className="absolute -inset-16 bg-[radial-gradient(circle_at_30%_20%,rgba(34,211,238,0.18),transparent_55%)]" />
-                </div>
-                <div className="relative">
-                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04]">
-                    <Icon className="h-5 w-5 text-neon-cyan" />
+                <TiltCard>
+                  <div className="w-full h-full glass neon-border group relative overflow-hidden p-6 transition-colors hover:shadow-glowCyan">
+                    <div className="absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100 pointer-events-none">
+                      <div className="absolute -inset-16 bg-[radial-gradient(circle_at_30%_20%,rgba(34,211,238,0.18),transparent_55%)]" />
+                    </div>
+                    <div className="relative pointer-events-none z-10">
+                      <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04]">
+                        <Icon className="h-5 w-5 text-neon-cyan" />
+                      </div>
+                      <div className="mt-4 text-lg font-bold">{e.title}</div>
+                      <div className="mt-2 text-sm leading-relaxed text-white/70">{e.desc}</div>
+                    </div>
                   </div>
-                  <div className="mt-4 text-lg font-bold">{e.title}</div>
-                  <div className="mt-2 text-sm leading-relaxed text-white/70">{e.desc}</div>
-                </div>
+                </TiltCard>
               </motion.div>
             )
           })}

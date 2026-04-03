@@ -1,6 +1,7 @@
 import { motion } from "framer-motion"
 import { Handshake, Award, Search, Zap, Mail, Phone, ExternalLink } from "lucide-react"
 import SectionHeading from "../components/SectionHeading"
+import TiltCard from "../components/TiltCard"
 import { EVENT } from "../content/event"
 
 const container = {
@@ -115,12 +116,15 @@ export default function Sponsor() {
             <motion.div 
               key={i} 
               variants={item} 
-              whileHover={{ scale: 1.05, y: -8, transition: { duration: 0.2, ease: "easeOut" } }}
-              className="glass neon-border p-8 hover:shadow-glowCyan transition-colors duration-300"
+              className="w-full h-full"
             >
-              <f.icon className={`h-8 w-8 ${f.color} mb-6`} />
-              <h3 className="text-xl font-bold mb-3">{f.title}</h3>
-              <p className="text-white/60 text-sm leading-relaxed">{f.desc}</p>
+              <TiltCard>
+                <div className="w-full h-full glass neon-border p-8 hover:shadow-glowCyan transition-colors duration-300 pointer-events-none">
+                  <f.icon className={`h-8 w-8 ${f.color} mb-6`} />
+                  <h3 className="text-xl font-bold mb-3">{f.title}</h3>
+                  <p className="text-white/60 text-sm leading-relaxed">{f.desc}</p>
+                </div>
+              </TiltCard>
             </motion.div>
           ))}
         </motion.div>
@@ -140,34 +144,37 @@ export default function Sponsor() {
             <motion.div 
               key={i} 
               variants={item}
-              whileHover={{ scale: pkg.featured ? 1.08 : 1.05, y: -8, transition: { duration: 0.2, ease: "easeOut" } }}
-              className={`glass relative overflow-hidden flex flex-col p-8 border transition-colors ${pkg.color} ${pkg.featured ? 'bg-white/[0.06] scale-105 z-10 hover:shadow-glowCyan' : 'hover:shadow-glowCyan/50'}`}
+              className="w-full h-full"
             >
-              {pkg.featured && (
-                <div className="absolute top-0 right-0 bg-neon-cyan px-4 py-1 text-[10px] font-black uppercase text-black tracking-widest">
-                  Most Popular
+              <TiltCard className="w-full h-full">
+                <div className={`w-full h-full glass relative overflow-hidden flex flex-col p-8 border transition-colors ${pkg.color} ${pkg.featured ? 'bg-white/[0.06] z-10 hover:shadow-glowCyan' : 'hover:shadow-glowCyan/50'}`}>
+                  {pkg.featured && (
+                    <div className="absolute top-0 right-0 bg-neon-cyan px-4 py-1 text-[10px] font-black uppercase text-black tracking-widest pointer-events-none">
+                      Most Popular
+                    </div>
+                  )}
+                  <div className="mb-6 pointer-events-none">
+                    <div className="text-sm font-semibold text-white/50 uppercase tracking-widest mb-1">{pkg.name}</div>
+                    <div className="text-3xl font-black text-white">{pkg.price}</div>
+                  </div>
+                  <ul className="space-y-4 mb-8 flex-grow pointer-events-none">
+                    {pkg.features.map((feat, j) => (
+                      <li key={j} className="flex gap-3 text-sm text-white/70">
+                        <Award className="h-5 w-5 flex-shrink-0 text-neon-cyan opacity-50" />
+                        {feat}
+                      </li>
+                    ))}
+                  </ul>
+                  <motion.a 
+                    whileHover={{ scale: 1.05 }} 
+                    whileTap={{ scale: 0.98 }} 
+                    className={`w-full py-4 rounded-xl text-center text-sm font-bold transition-all relative z-20 ${pkg.featured ? 'btn-primary text-black' : 'bg-white/10 hover:bg-white/20'}`}
+                    href="#contact"
+                  >
+                    Become a {pkg.name} Sponsor
+                  </motion.a>
                 </div>
-              )}
-              <div className="mb-6">
-                <div className="text-sm font-semibold text-white/50 uppercase tracking-widest mb-1">{pkg.name}</div>
-                <div className="text-3xl font-black text-white">{pkg.price}</div>
-              </div>
-              <ul className="space-y-4 mb-8 flex-grow">
-                {pkg.features.map((feat, j) => (
-                  <li key={j} className="flex gap-3 text-sm text-white/70">
-                    <Award className="h-5 w-5 flex-shrink-0 text-neon-cyan opacity-50" />
-                    {feat}
-                  </li>
-                ))}
-              </ul>
-              <motion.a 
-                whileHover={{ scale: 1.02 }} 
-                whileTap={{ scale: 0.98 }} 
-                className={`w-full py-4 rounded-xl text-center text-sm font-bold transition-all ${pkg.featured ? 'btn-primary' : 'bg-white/10 hover:bg-white/20'}`}
-                href="#contact"
-              >
-                Become a {pkg.name} Sponsor
-              </motion.a>
+              </TiltCard>
             </motion.div>
           ))}
         </motion.div>
